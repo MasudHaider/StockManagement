@@ -1,0 +1,27 @@
+﻿@model StockManagementMvcWebApp.Models.Company
+
+@{
+    ViewBag.Title = "CompanySave";
+    string message = ViewBag.Message;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left: 40%">Company Setup</h3>
+<main style="margin:5% 20% 5%">
+    <form class="form-horizontal" method="POST">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="nameInputBox" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Company Name" name="companyName"/>
+                @Html.ValidationMessageFor(m => m.CompanyName)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-info btn-md">Save</button>
+            </div>
+        </div>
+    </form>
+    @message
+</main>

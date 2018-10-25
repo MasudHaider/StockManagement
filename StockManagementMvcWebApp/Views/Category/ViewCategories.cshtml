@@ -1,0 +1,28 @@
+﻿@using StockManagementMvcWebApp.Models
+@model StockManagementMvcWebApp.Models.Category
+
+@{
+    ViewBag.Title = "ViewCategories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Category> categories = ViewBag.Categories;
+}
+
+<div>
+    <h3 style="margin-left: 18%;">View All Categories</h3>
+    <br />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Category category in categories)
+            {
+                <tr>
+                    <td>@category.CategoryName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

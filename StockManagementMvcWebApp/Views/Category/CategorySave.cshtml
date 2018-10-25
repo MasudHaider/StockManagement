@@ -1,0 +1,35 @@
+﻿@model StockManagementMvcWebApp.Models.Category
+
+@{
+    ViewBag.Title = "CategorySave";
+    string message = ViewBag.Message;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="margin-left: 40%">Category Setup</h3>
+<main style="margin: 5% 20% 5%">
+    <form class="form-horizontal" method="POST">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="nameInputBox" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="nameInputBox" placeholder="Category Name" name="categoryName" />
+                @Html.ValidationMessageFor(m => m.CategoryName)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-info">Save</button>
+            </div>
+        </div>
+    </form>
+    @message
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/custom-validator")
+        @*@Scripts.Render("~/Scripts/CategorySaveValidate.js")*@
+    }
+
+</main>
+

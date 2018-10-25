@@ -1,0 +1,28 @@
+﻿@using StockManagementMvcWebApp.Models
+@model StockManagementMvcWebApp.Models.Company
+
+@{
+    ViewBag.Title = "ViewCompanies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Company> companies = ViewBag.Companies;
+}
+
+<div>
+    <h3 style="margin-left: 18%;">View All Companies</h3>
+    <br />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Company company in companies)
+            {
+                <tr>
+                    <td>@company.CompanyName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

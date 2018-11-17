@@ -108,3 +108,4 @@ E:\Work Place\project\github\StockManagementMvcWebApp\StockManagementMvcWebApp\b
 E:\Work Place\project\github\StockManagementMvcWebApp\StockManagementMvcWebApp\obj\Debug\StockManagementMvcWebApp.csprojResolveAssemblyReference.cache
 E:\Work Place\project\github\StockManagementMvcWebApp\StockManagementMvcWebApp\obj\Debug\StockManagementMvcWebApp.dll
 E:\Work Place\project\github\StockManagementMvcWebApp\StockManagementMvcWebApp\obj\Debug\StockManagementMvcWebApp.pdb
+E:\Work Place\project\github\StockManagementMvcWebApp\StockManagementMvcWebApp\bin\jQuery.Validation.Unobtrusive.Native.dll

@@ -15,7 +15,7 @@ namespace StockManagementMvcWebApp.Gateway
             Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.Clear();
-            Command.Parameters.AddWithValue("CompanyName", company.CompanyName);
+            Command.Parameters.AddWithValue("company", company.CompanyName);
 
             Connection.Open();
             Reader = Command.ExecuteReader();

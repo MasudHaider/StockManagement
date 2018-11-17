@@ -23,8 +23,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-@*                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @*                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Category<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/category/CategorySave">Category Save</a></li>
+                            <li><a class="dropdown-item" href="/category/ViewCategories">Category View</a></li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button" id="itemDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Item<span class="caret"></span>

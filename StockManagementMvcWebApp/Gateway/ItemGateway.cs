@@ -48,23 +48,33 @@ namespace StockManagementMvcWebApp.Gateway
             Query = "SELECT * FROM ItemSetup";
             Command = new SqlCommand(Query, Connection);
 
-            List<Item> items = new List<Item>();
+            List<Item> items = null;
+
+            
 
             Connection.Open();
 
             Reader = Command.ExecuteReader();
-
-            while (Reader.Read())
+            if (Reader.HasRows)
             {
-                Item anItem = new Item()
+                items = new List<Item>();
+                while (Reader.Read())
                 {
-                    ItemId = Convert.ToInt32(Reader["ItemId"]),
-                    ItemName = Reader["ItemName"].ToString(),
-                    ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
-                    Available = (double)Reader["Available"]
-                };
-                items.Add(anItem);
+                    Item anItem = new Item()
+                    {
+                        ItemId = Convert.ToInt32(Reader["ItemId"]),
+                        ItemName = Reader["ItemName"].ToString(),
+                        ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
+                        //Available = (double)Reader["Available"],
+                        CategoryId = Convert.ToInt32(Reader["CategoryId"]),
+                        CompanyId = Convert.ToInt32(Reader["CompanyId"]),
+                        
+                        
+                    };
+                    items.Add(anItem);
+                }
             }
+            
             Reader.Close();
             Connection.Close();
 

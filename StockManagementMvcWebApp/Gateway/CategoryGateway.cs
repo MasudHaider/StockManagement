@@ -14,7 +14,7 @@ namespace StockManagementMvcWebApp.Gateway
             Query = "SELECT * FROM CategorySetup WHERE CategoryName = @category";
             Command = new SqlCommand(Query, Connection);
             Command.Parameters.Clear();
-            Command.Parameters.AddWithValue("CategoryName", category.CategoryName);
+            Command.Parameters.AddWithValue("category", category.CategoryName);
 
             Connection.Open();
             Reader = Command.ExecuteReader();

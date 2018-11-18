@@ -14,36 +14,41 @@
     <form class="form-horizontal" method="POST">
         @Html.AntiForgeryToken()
         <div class="form-group">
-            <label for="categoryDropDownList" class="col-sm-2 control-label"></label>
+            <label for="categoryDropDownList" class="col-sm-2 control-label">Category</label>
             <div class="col-sm-10">
-                <select class="form-control" id="categoryDropDownList" name="CategoryId">
+                @*<select class="form-control" id="categoryDropDownList" name="CategoryId">
                     <option value="0">--Select Category--</option>
 
                     @foreach (var item in categories)
                     {
                         <option value="@item.CategoryId">@item.CategoryName</option>
                     }
-                </select>
+                </select>*@
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(categories, "CategoryId", "CategoryName"), "--Select Category--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => c.CategoryId)
             </div>
         </div>
         <div class="form-group">
-            <label for="companyDropDownList" class="col-sm-2 control-label"></label>
+            <label for="companyDropDownList" class="col-sm-2 control-label">Companies</label>
             <div class="col-sm-10">
-                <select class="form-control" id="companyDropDownList" name="CompanyId">
+                @*<select class="form-control" id="companyDropDownList" name="CompanyId">
                     <option value="0">--Select Company--</option>
                     @foreach (var item in companies)
                     {
                         <option value="@item.CompanyId">@item.CompanyName</option>
                     }
-                </select>
+                </select>*@
+
+                @Html.DropDownListFor(m => m.CompanyId, new SelectList(companies, "CompanyId", "CompanyName"), "--Select Company--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => c.CompanyId)
             </div>
         </div>
         <div class="form-group">
             <label for="itemInputBox" class="col-sm-2 control-label">Item Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="itemInputBox" placeholder="Item Name" name="ItemName"/>
+                @*<input type="text" class="form-control" id="itemInputBox" placeholder="Item Name" name="ItemName"/>*@
+
+                @Html.TextBoxFor(m=>m.ItemName, new{@class="form-control"})
                 @Html.ValidationMessageFor(m => m.ItemName)
             </div>
         </div>
@@ -64,7 +69,7 @@
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/custom-validator")
+@*    @Scripts.Render("~/bundles/custom-validator")*@
 }
 
 

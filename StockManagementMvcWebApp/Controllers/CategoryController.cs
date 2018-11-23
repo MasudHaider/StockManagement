@@ -11,12 +11,12 @@ namespace StockManagementMvcWebApp.Controllers
     public class CategoryController : Controller
     {
         CategoryManager aCategoryManager = new CategoryManager();
-        [HttpGet]
+        /*[HttpGet]*/
         public ActionResult CategorySave()
         {
             return View();
         }
-
+/*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CategorySave(Category category)
@@ -28,6 +28,20 @@ namespace StockManagementMvcWebApp.Controllers
             }
             ViewBag.Message = message;
             return View();
+        }*/
+
+
+        public JsonResult Category_Save(Category category)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                message = aCategoryManager.SaveCategory(category);
+            }
+            //ViewBag.Message = message;
+            List<Category> categories = aCategoryManager.GetAllCategories();
+            //return Json(category,message);
+            return Json(new { data = categories, mess = message });
         }
 
         public ActionResult ViewCategories()

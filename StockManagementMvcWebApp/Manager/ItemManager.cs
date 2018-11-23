@@ -42,5 +42,11 @@ namespace StockManagementMvcWebApp.Manager
             }
             return "Failed";
         }
+
+        public List<Item> GetItemsByCompanyCategory(int? companyId, int? categoryId)
+        {
+
+            return aItemGateway.GetItemsByCompanyCategory(companyId, categoryId);
+        }
     }
 }

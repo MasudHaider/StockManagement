@@ -202,8 +202,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CategoryAjax.js" />
     <Content Include="Scripts\CategorySaveValidate.js" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\CompanyAjax.js" />
+    <Content Include="Scripts\ItemSaveAjax.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

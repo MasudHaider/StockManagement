@@ -8,26 +8,48 @@
 
 <h3 style="margin-left: 40%">Company Setup</h3>
 <main style="margin:5% 20% 5%">
-    <form class="form-horizontal" method="POST">
+    <form class="form-horizontal" id="companyForm" method="POST">
         @Html.AntiForgeryToken()
         <div class="form-group">
             <label for="nameInputBox" class="col-sm-2 control-label">Name</label>
             <div class="col-sm-10">
-                @*<input type="text" class="form-control" placeholder="Company Name" name="companyName"/>*@
+                @*<input class="form-control" data-val="true" data-val-required="Please enter a company name" id="CompanyName" name="CompanyName" type="text" value="" />*@
 
-                @Html.TextBoxFor(m=>m.CompanyName,new{@class="form-control"})
+
+                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.CompanyName)
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-info btn-md">Save</button>
+                <button type="button" id="companySaveButton" class="btn btn-info btn-md">Save</button>
+                <br /><br />
+                <p id="message"></p>
+
             </div>
         </div>
     </form>
+
+    <table id="companyViewTable" class="table table-hover table-responsive table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>SL</th>
+                <th>Company Name</th>
+            </tr>
+        </thead>
+        <tbody id="companyViewTableBody"></tbody>
+
+    </table>
+
+
+
+
+
     @message
+
     @section scripts
     {
-        @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryval")
+            <script src="~/Scripts/CompanyAjax.js"></script>
     }
 </main>

@@ -43,7 +43,7 @@ namespace StockManagementMvcWebApp.Controllers
         public ActionResult GetItemsById(int itemId)
         {
             List<Item> items = aItemManager.GetAllItems();
-            var i = items.Where(p => p.ItemId == itemId);
+            var i = items.Where(p => p.Id == itemId);
             return Json(i);
         }
 

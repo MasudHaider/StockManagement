@@ -16,7 +16,7 @@ namespace StockManagementMvcWebApp.Controllers
         CategoryManager aCategoryManager = new CategoryManager();
         CompanyManager aCompanyManager = new CompanyManager();
 
-        [HttpGet]
+        /*[HttpGet]*/
         public ActionResult ItemSave()
         {
             ViewBag.Categories = aCategoryManager.GetAllCategories();
@@ -24,7 +24,7 @@ namespace StockManagementMvcWebApp.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ItemSave(Item item)
         {
@@ -38,6 +38,19 @@ namespace StockManagementMvcWebApp.Controllers
             ViewBag.Categories = aCategoryManager.GetAllCategories();
             ViewBag.Companies = aCompanyManager.GetAllCompanies();
             return View();
+        }*/
+
+
+        public JsonResult Item_Save(Item item)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                message = aItemManager.SaveItem(item);
+                ViewBag.Message = message;
+            }
+
+            return Json(message);
         }
 
         [HttpGet]
@@ -51,8 +64,10 @@ namespace StockManagementMvcWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ItemSearchAndView(Item anItem)
+        public ActionResult ItemSearchAndView(int? CompanyId, int? CategoryId)
         {
+
+            List<Item> items = aItemManager.GetItemsByCompanyCategory(CompanyId, CategoryId);
 
             ViewBag.Categories = aCategoryManager.GetAllCategories();
             ViewBag.Companies = aCompanyManager.GetAllCompanies();

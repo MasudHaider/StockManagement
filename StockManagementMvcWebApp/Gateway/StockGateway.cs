@@ -14,12 +14,12 @@ namespace StockManagementMvcWebApp.Gateway
         public List<int> SaveStockIn(StockIn stockIn)
         {
             
-            Query = "INSERT INTO StockSetup (CompanyId, ItemId, StockInQuantity) VALUES(@CompanyId, @ItemId, @StockInQuantity)";
+            Query = "INSERT INTO StockSetup (CompanyId, Id, StockInQuantity) VALUES(@CompanyId, @Id, @StockInQuantity)";
             Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.Clear();
             Command.Parameters.AddWithValue("CompanyId", stockIn.CompanyId);
-            Command.Parameters.AddWithValue("ItemId", stockIn.ItemId);
+            Command.Parameters.AddWithValue("Id", stockIn.ItemId);
             Command.Parameters.AddWithValue("StockInQuantity", stockIn.StockInQuantity);
 
             Connection.Open();
@@ -27,7 +27,7 @@ namespace StockManagementMvcWebApp.Gateway
             Connection.Close();
 
             Query = "UPDATE ItemSetup SET Available = " + (stockIn.Available + stockIn.StockInQuantity) +
-                    " WHERE ItemId = " + stockIn.ItemId;
+                    " WHERE Id = " + stockIn.ItemId;
             Command = new SqlCommand(Query, Connection);
             Connection.Open();
             int rowAffectedInItemSetup = Command.ExecuteNonQuery();
@@ -41,12 +41,12 @@ namespace StockManagementMvcWebApp.Gateway
 
         public List<int> SaveStockOut(StockOut stockOut)
         {
-            Query = "INSERT INTO StockSetup (CompanyId, ItemId, StockOutQuantity) VALUES(@CompanyId, @ItemId, @StockOutQuantity)";
+            Query = "INSERT INTO StockSetup (CompanyId, Id, StockOutQuantity) VALUES(@CompanyId, @Id, @StockOutQuantity)";
             Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.Clear();
             Command.Parameters.AddWithValue("CompanyId", stockOut.CompanyId);
-            Command.Parameters.AddWithValue("ItemId", stockOut.ItemId);
+            Command.Parameters.AddWithValue("Id", stockOut.ItemId);
             Command.Parameters.AddWithValue("StockInQuantity", stockOut.StockOutQuantity);
 
             Connection.Open();
@@ -54,7 +54,7 @@ namespace StockManagementMvcWebApp.Gateway
             Connection.Close();
 
             Query = "UPDATE ItemSetup SET Available = " + (stockOut.Available - stockOut.StockOutQuantity) +
-                    " WHERE ItemId = " + stockOut.ItemId;
+                    " WHERE Id = " + stockOut.ItemId;
             Command = new SqlCommand(Query, Connection);
             Connection.Open();
             int rowAffectedInItemSetup = Command.ExecuteNonQuery();
@@ -79,8 +79,8 @@ namespace StockManagementMvcWebApp.Gateway
             {
                 stockSummaries.Add(new StockSummary
                 {
-                    ItemId = Convert.ToInt32(Reader["ItemId"]),
-                    ItemName = Reader["ItemName"].ToString(),
+                    ItemId = Convert.ToInt32(Reader["Id"]),
+                    ItemName = Reader["Name"].ToString(),
                     CompanyId = Convert.ToInt32(Reader["CompanyId"]),
                     CompanyName = Reader["CompanyName"].ToString(),
                     StockOutQuantity = (double)Reader["StockOutQuantity"]

@@ -32,16 +32,16 @@
         <div class="form-group">
             <label for="itemDropDownList" class="col-sm-2 control-label">Item</label>
             <div class="col-sm-10">
-                @*<select class="form-control" id="itemDropDownList" name="ItemId">
+                @*<select class="form-control" id="itemDropDownList" name="Id">
                     <option value="0">--Select Item--</option>
 
                     @foreach (var item in items)
                     {
-                        <option value="@item.ItemId">@item.ItemName</option>
+                        <option value="@item.Id">@item.Name</option>
                     }
                 </select>*@
 
-                @Html.DropDownListFor(m => m.ItemId, new SelectList(items, "ItemId", "ItemName"), "--Select Item--", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.ItemId, new SelectList(items, "Id", "Name"), "--Select Item--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => c.ItemId)
             </div>
         </div>

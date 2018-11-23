@@ -8,28 +8,46 @@
 
 <h3 style="margin-left: 40%">Category Setup</h3>
 <main style="margin: 5% 20% 5%">
-    <form class="form-horizontal" method="POST">
+    <form class="form-horizontal" id="categoryForm" method="POST">
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         <div class="form-group">
             <label for="nameInputBox" class="col-sm-2 control-label">Name</label>
             <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.CategoryName, new {@class = "form-control"})
                 @Html.ValidationMessageFor(m => m.CategoryName)
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-info">Save</button>
+                <button @*type="submit"*@ type="button" id="categorySaveButton" class="btn btn-info">Save</button>
+                <br/><br/>
+                <p id="message"></p>
             </div>
         </div>
+
     </form>
+
+    <table id="categotyViewTable" class="table table-hover table-responsive table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>SL</th>
+            <th>Category Name</th>
+        </tr>
+        </thead>
+        <tbody id="categotyViewTableBody">
+        
+        </tbody>
+        
+    </table>
+
     @message
 
     @section Scripts{
         @Scripts.Render("~/bundles/jqueryval")
         @*@Scripts.Render("~/bundles/custom-validator")*@
         @*@Scripts.Render("~/Scripts/CategorySaveValidate.js")*@
+        <script src="~/Scripts/CategoryAjax.js"></script>
     }
 
 </main>

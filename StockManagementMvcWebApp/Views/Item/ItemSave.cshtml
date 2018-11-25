@@ -11,11 +11,12 @@
 
 <h3 style="margin-left: 40%">Item Setup</h3>
 <main class="container">
-    <form class="form-horizontal" method="POST">
+    <form class="form-horizontal" id="itemForm" method="POST">
         @Html.AntiForgeryToken()
         <div class="form-group">
             <label for="categoryDropDownList" class="col-sm-2 control-label">Category</label>
             <div class="col-sm-10">
+
                 @*<select class="form-control" id="categoryDropDownList" name="CategoryId">
                     <option value="0">--Select Category--</option>
 
@@ -24,13 +25,15 @@
                         <option value="@item.CategoryId">@item.CategoryName</option>
                     }
                 </select>*@
-                @Html.DropDownListFor(m => m.CategoryId, new SelectList(categories, "CategoryId", "CategoryName"), "--Select Category--", new { @class = "form-control" })
+
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(categories, "CategoryId", "CategoryName"), "--Select Category--", new {@class = "form-control"})
                 @Html.ValidationMessageFor(c => c.CategoryId)
             </div>
         </div>
         <div class="form-group">
             <label for="companyDropDownList" class="col-sm-2 control-label">Companies</label>
             <div class="col-sm-10">
+                
                 @*<select class="form-control" id="companyDropDownList" name="CompanyId">
                     <option value="0">--Select Company--</option>
                     @foreach (var item in companies)
@@ -39,28 +42,35 @@
                     }
                 </select>*@
 
-                @Html.DropDownListFor(m => m.CompanyId, new SelectList(companies, "CompanyId", "CompanyName"), "--Select Company--", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.CompanyId, new SelectList(companies, "CompanyId", "CompanyName"), "--Select Company--", new {@class = "form-control"})
                 @Html.ValidationMessageFor(c => c.CompanyId)
             </div>
         </div>
         <div class="form-group">
             <label for="itemInputBox" class="col-sm-2 control-label">Item Name</label>
             <div class="col-sm-10">
-                @*<input type="text" class="form-control" id="itemInputBox" placeholder="Item Name" name="ItemName"/>*@
+                
+                @*<input type="text" class="form-control" id="itemInputBox" placeholder="Item Name" name="Name"/>*@
 
-                @Html.TextBoxFor(m=>m.ItemName, new{@class="form-control"})
-                @Html.ValidationMessageFor(m => m.ItemName)
+                @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                @Html.ValidationMessageFor(m => m.Name)
             </div>
         </div>
         <div class="form-group">
             <label for="reorderInputBox" class="col-sm-2 control-label">Reorder Level</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="reorderInputBox" placeholder="Reorder Level" name="ReorderLevel"/>
+                
+                @*<input type="text" class="form-control" id="reorderInputBox" placeholder="Reorder Level" name="ReorderLevel"/>*@
+
+                @Html.TextBoxFor(m => m.ReorderLevel,new{@class="form-control"})
+                
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-info">Save</button>
+                <button type="button" id="itemSaveButton" class="btn btn-info">Save</button>
+                <br/><br/>
+                <p id="message"></p>
             </div>
         </div>
     </form>
@@ -70,6 +80,7 @@
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
 @*    @Scripts.Render("~/bundles/custom-validator")*@
+    <script src="~/Scripts/ItemSaveAjax.js"></script>
 }
 
 

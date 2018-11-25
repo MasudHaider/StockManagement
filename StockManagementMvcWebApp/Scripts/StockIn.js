@@ -13,7 +13,7 @@
     //        success: function(data) {
     //            $("#itemDropDownList").append('<option value=0>--Select an item--</option>');
     //            $.each(data, function(key, value) {
-    //                $("#itemDropDownList").append('<option value=' + value.ItemId + '>' + value.ItemName + '</option>');
+    //                $("#itemDropDownList").append('<option value=' + value.Id + '>' + value.Name + '</option>');
     //            });
     //        }
     //    });
@@ -60,7 +60,7 @@
 //            debugger;
 //            var stockData = {
 //                CompanyId: $.trim($("#companyDropDownList").val()),
-//                ItemId: $.trim($("#itemDropDownList").val()),
+//                Id: $.trim($("#itemDropDownList").val()),
 //                StockIn: $.trim($("#stockInInputBox").val())
 //            };
 //            $.post(url, { StockData: stockData }, function(data) {

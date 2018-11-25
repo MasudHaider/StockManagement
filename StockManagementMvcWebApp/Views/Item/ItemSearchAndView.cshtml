@@ -1,5 +1,7 @@
 ﻿@using StockManagementMvcWebApp.Models
-@model StockManagementMvcWebApp.Models.Item
+@model Item
+
+
 
 @{
     ViewBag.Title = "ItemSearchAndView";
@@ -52,7 +54,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" id="search&ViewItem" class="btn btn-info">Search</button>
+                <button type="submit" id="search&ViewItem" class="btn btn-info">Search</button>
             </div>
         </div>
         <div style="margin-top: 20px; text-align: center;">
@@ -62,8 +64,7 @@
                         <th>SL</th>
                         <th>Item</th>
                         <th>Company</th>
-                        <th>Quantity</th>
-                        <th>Available Quantity</th>
+                        <th>Catagory</th>
                         <th>Reorder Level</th>
                     </tr>
                 </thead>

@@ -8,7 +8,7 @@ namespace StockManagementMvcWebApp.Models
 {
     public class Item
     {
-        public int ItemId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "please select a category")]
         public int CategoryId { get; set; }
@@ -17,13 +17,13 @@ namespace StockManagementMvcWebApp.Models
         public int CompanyId { get; set; }
 
         [Required(ErrorMessage = "Please enter an item name")]
-        public string ItemName { get; set; }
+        public string Name { get; set; }
 
         public int ReorderLevel { get; set; }
 
-        public float ItemSold { get; set; }
-        public float ItemDamaged { get; set; }
-        public float ItemLost { get; set; }
-        public double Available { get; set; }
+        public int Sold { get; set; }
+        public int Damaged { get; set; }
+        public int Lost { get; set; }
+        public int Available { get; set; }
     }
 }

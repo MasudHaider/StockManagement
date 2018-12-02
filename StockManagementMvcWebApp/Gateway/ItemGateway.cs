@@ -28,8 +28,8 @@ namespace StockManagementMvcWebApp.Gateway
 
         public int Save(Item item)
         {
-            Query = "INSERT INTO ItemSetup (CategoryId, CompanyId, Name, ReorderLevel,Sold,Damaged,Lost,Available)" +
-                    " VALUES(@CategoryId, @CompanyId, @Name, @ReorderLevel,@Sold,@Damaged,@Lost,@Available)";
+            Query = "INSERT INTO ItemSetup (CategoryId, CompanyId, Name, ReorderLevel,Available)" +
+                    " VALUES(@CategoryId, @CompanyId, @Name, @ReorderLevel,@Available)";
             Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.Clear();
@@ -37,9 +37,6 @@ namespace StockManagementMvcWebApp.Gateway
             Command.Parameters.AddWithValue("CompanyId", item.CompanyId);
             Command.Parameters.AddWithValue("Name", item.Name);
             Command.Parameters.AddWithValue("ReorderLevel", item.ReorderLevel);
-            Command.Parameters.AddWithValue("Sold", 0);
-            Command.Parameters.AddWithValue("Damaged", 0);
-            Command.Parameters.AddWithValue("Lost", 0);
             Command.Parameters.AddWithValue("Available", 0);
 
             Connection.Open();
@@ -70,10 +67,11 @@ namespace StockManagementMvcWebApp.Gateway
                     {
                         Id = Convert.ToInt32(Reader["Id"]),
                         Name = Reader["Name"].ToString(),
-                        ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
-                        //Available = (double)Reader["Available"],
                         CategoryId = Convert.ToInt32(Reader["CategoryId"]),
-                        CompanyId = Convert.ToInt32(Reader["CompanyId"])
+                        CompanyId = Convert.ToInt32(Reader["CompanyId"]),
+                        ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
+                        Available = Convert.ToInt32(Reader["Available"])
+                        
                         
                         
                     };
@@ -121,10 +119,10 @@ namespace StockManagementMvcWebApp.Gateway
                     {
                         Id = Convert.ToInt32(Reader["Id"]),
                         Name = Reader["Name"].ToString(),
-                        ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
-                        //Available = (double)Reader["Available"],
                         CategoryId = Convert.ToInt32(Reader["CategoryId"]),
-                        CompanyId = Convert.ToInt32(Reader["CompanyId"])
+                        CompanyId = Convert.ToInt32(Reader["CompanyId"]),
+                        ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
+                        Available = Convert.ToInt32(Reader["Available"])
 
 
                     };

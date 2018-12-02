@@ -10,20 +10,16 @@ namespace StockManagementMvcWebApp.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Please enter an item name")]
+        public string Name { get; set; }
+
         [Required(ErrorMessage = "please select a category")]
         public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "please select a company")]
         public int CompanyId { get; set; }
 
-        [Required(ErrorMessage = "Please enter an item name")]
-        public string Name { get; set; }
-
         public int ReorderLevel { get; set; }
-
-        public int Sold { get; set; }
-        public int Damaged { get; set; }
-        public int Lost { get; set; }
         public int Available { get; set; }
     }
 }

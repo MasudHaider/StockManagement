@@ -1,11 +1,12 @@
 ﻿@using StockManagementMvcWebApp.Models
-@model StockManagementMvcWebApp.Models.Stock
+@model StockManagementMvcWebApp.Models.StockOut
 
 @{
     ViewBag.Title = "StockOutSave";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<Company> companies = ViewBag.Companies;
-    List<Item> items = ViewBag.Items;
+    /*List<Item> items = ViewBag.Items;*/
+    List<Item> items = new List<Item>();
     string message = ViewBag.Message;
 }
 
@@ -16,26 +17,26 @@
             text-align: center;
         }
     </style>
-<link href="~/Content/StockOutTable.css" rel="stylesheet" />
+    <link href="~/Content/StockOutTable.css" rel="stylesheet" />
 }
 
 
 <h3 style="margin-left: 40%">Stock Out Setup</h3>
 
 <main class="container">
-    <form class="form-horizontal" method="POST" id="submitForm">
+    <form class="form-horizontal" method="POST" id="stockForm">
         @Html.AntiForgeryToken()
         <div class="form-group">
             <label for="companyDropDownList" class="col-sm-2 control-label">Company</label>
             <div class="col-sm-10">
                 @*<select class="form-control" id="companyDropDownList" name="CompanyId">
-                    <option value="0">--Select Company--</option>
+                        <option value="0">--Select Company--</option>
 
-                    @foreach (var item in companies)
-                    {
-                        <option value="@item.CompanyId">@item.CompanyName</option>
-                    }
-                </select>*@
+                        @foreach (var item in companies)
+                        {
+                            <option value="@item.CompanyId">@item.CompanyName</option>
+                        }
+                    </select>*@
 
                 @Html.DropDownListFor(m => m.CompanyId, new SelectList(companies, "CompanyId", "CompanyName"), "--Select Company--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => c.CompanyId)
@@ -45,13 +46,13 @@
             <label for="itemDropDownList" class="col-sm-2 control-label">Item</label>
             <div class="col-sm-10">
                 @*<select class="form-control" id="itemDropDownList" name="Id">
-                    <option value="0">--Select Item--</option>
+                        <option value="0">--Select Item--</option>
 
-                    @foreach (var item in items)
-                    {
-                        <option value="@item.Id">@item.Name</option>
-                    }
-                </select>*@
+                        @foreach (var item in items)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>*@
 
                 @Html.DropDownListFor(m => m.ItemId, new SelectList(items, "Id", "Name"), "--Select Item--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => c.ItemId)
@@ -60,55 +61,59 @@
         <div class="form-group">
             <label for="reorderLevelInputBox" class="col-sm-2 control-label">Reorder Level</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="reorderLevelInputBox" placeholder="Reorder Level" name="ReorderLevel" readonly="readonly"/>
+                <input type="number" class="form-control" id="reorderLevelInputBox" placeholder="Reorder Level" name="ReorderLevel" readonly="readonly" />
             </div>
         </div>
         <div class="form-group">
             <label for="availabilityInputBox" class="col-sm-2 control-label">Availability</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="availabilityInputBox" placeholder="Availability" name="Available" readonly="readonly"/>
+                <input type="number" class="form-control" id="availabilityInputBox" placeholder="Availability" name="Available" readonly="readonly" />
             </div>
         </div>
         <div class="form-group">
             <label for="stockOutInputBox" class="col-sm-2 control-label">Stock Out Quantity</label>
             <div class="col-sm-10">
                 @*<input type="number" class="form-control" id="stockOutInputBox" placeholder="Stock Out Quantity" name="StockOutQuantity"/>*@
-                @Html.TextBoxFor(m => m.StockInQuantity, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.StockInQuantity)
+                @Html.TextBoxFor(m => m.StockOutQuantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.StockOutQuantity)
 
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="button" id="addStockOut" class="btn btn-info">Add</button>
+
             </div>
         </div>
         <div style="margin-top: 20px; text-align: center;">
             <table class="table table-bordered" id="stockOutTable">
                 <thead>
-                <tr>
-                    <th >SL</th>
-                    <th>Item</th>
-                    <th>Company</th>
-                    <th>Quantity</th>
-                </tr>
+                    <tr>
+                        <th>SL</th>
+                        <th>Item</th>
+                        <th>Company</th>
+                        <th>Stock Out Quantity</th>
+                    </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>
         </div>
-        <div class="container">
-            <div class="btn-group btn-group-justified">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" id="sellStockOut" class="btn btn-info">Sell</button>
-                </div>
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" id="damageStockOut" class="btn btn-info">Damage</button>
-                </div>
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" id="lostStockOut" class="btn btn-info">Lost</button>
-                </div>
-            </div>
+
+        <div class="btn-group">
+
+            <button type="button" id="sellStockOut" class="btn btn-info">Sell</button>
+
+
+            <button type="button" id="damageStockOut" class="btn btn-info">Damage</button>
+
+
+            <button type="button" id="lostStockOut" class="btn btn-info">Lost</button>
+
+
         </div>
+        <br /><br />
+        <p id="message"></p>
+
     </form>
     @message
 </main>
@@ -116,4 +121,5 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/StockOut.js"></script>
+    <script src="~/Scripts/stockOutAjax.js"></script>
 }

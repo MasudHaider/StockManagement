@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$/*(function() {
     $("#itemDropDownList").change(function() {
         $("#reorderLevelInputBox").val("");
         $("#availabilityInputBox").val("");
@@ -35,5 +35,5 @@
 });
 
 
-
+*/
     

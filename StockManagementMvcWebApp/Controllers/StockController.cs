@@ -15,15 +15,15 @@ namespace StockManagementMvcWebApp.Controllers
         ItemManager aItemManager = new ItemManager();
         StockManager aStockManager = new StockManager();
 
-        [HttpGet]
+        /*[HttpGet]*/
         public ActionResult StockInSave()
         {
             ViewBag.Companies = aCompanyManager.GetAllCompanies();
-            ViewBag.Items = aItemManager.GetAllItems();
+            //ViewBag.Items = aItemManager.GetAllItems();
             return View();
         }
 
-
+/*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult StockInSave(StockIn stockIn)
@@ -38,23 +38,54 @@ namespace StockManagementMvcWebApp.Controllers
             ViewBag.Items = aItemManager.GetAllItems();
 
             return View();
+        }*/
+
+        //public JsonResult StockIn_Save(StockIn stockIn)
+        public JsonResult StockIn_Save(StockIn stockIn)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                message = aStockManager.SaveStockIn(stockIn);
+                /*ViewBag.Message = message;*/
+            }
+            ViewBag.Companies = aCompanyManager.GetAllCompanies();
+            //ViewBag.Items = aItemManager.GetAllItems();
+
+            return Json(message);
         }
 
-        public ActionResult GetItemsById(int itemId)
+
+        public JsonResult StockOut_SaveAll(List<StockOut> stockOutList)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+
+                message = aStockManager.StockOut_SaveAll(stockOutList);
+                /*ViewBag.Message = message;*/
+            }
+            ViewBag.Companies = aCompanyManager.GetAllCompanies();
+            //ViewBag.Items = aItemManager.GetAllItems();
+
+            return Json(message);
+        }
+
+        public JsonResult GetItemsById(int itemId)
         {
             List<Item> items = aItemManager.GetAllItems();
             var i = items.Where(p => p.Id == itemId);
             return Json(i);
         }
 
-        public ActionResult GetItemsByCompanyId(int companyId)
+        public JsonResult GetItemsByCompanyId(int companyId)
         {
             List<Item> items = aItemManager.GetAllItems();
             var c = items.Where(p => p.CompanyId == companyId);
             return Json(c);
         }
 
-        [HttpGet]
+        /*[HttpGet]*/
         public ActionResult StockOutSave()
         {
             ViewBag.Companies = aCompanyManager.GetAllCompanies();
@@ -62,7 +93,7 @@ namespace StockManagementMvcWebApp.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult StockOutSave(StockOut stockOut)
         {
@@ -75,7 +106,7 @@ namespace StockManagementMvcWebApp.Controllers
             ViewBag.Companies = aCompanyManager.GetAllCompanies();
             ViewBag.Items = aItemManager.GetAllItems();
             return View();
-        }
+        }*/
 
 //        public ActionResult GetStockInfoById(int id)
 //        {

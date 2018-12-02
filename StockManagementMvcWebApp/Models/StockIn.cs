@@ -14,8 +14,11 @@ namespace StockManagementMvcWebApp.Models
         [Required(ErrorMessage = "please select an item")]
         public int ItemId { get; set; }
         public int ReorderLevel { get; set; }
-        public double Available { get; set; }
+        public int Available { get; set; }
         [Required(ErrorMessage = "Please enter stockin quantit number")]
-        public double StockInQuantity { get; set; }
+        public int StockInQuantity { get; set; }
+
+        public string Date { get; set; }
+
     }
 }

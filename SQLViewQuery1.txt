@@ -1,0 +1,13 @@
+CREATE VIEW SalesView as
+SELECT itm.Name as ItemName ,cm.CompanyName,ct.CategoryName, sto.StockOutQuantity as Quantity, sto.Date FROM StockOut as sto left join ItemSetup as itm on sto.ItemId=itm.Id
+left join CompanySetup as cm on sto.CompanyId=cm.CompanyId
+left join CategorySetup as ct on itm.CategoryId = ct.CategoryId
+WHERE sto.ActionType='sell'
+
+ ORDER BY itm.Name
+
+
+SELECT ItemName, SUM(Quantity) as Total FROM SalesView
+WHERE Date BETWEEN '2018-11-28' AND '2018-11-29'
+GROUP BY ItemName
+ORDER BY ItemName

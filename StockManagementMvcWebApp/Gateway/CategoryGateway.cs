@@ -65,5 +65,7 @@ namespace StockManagementMvcWebApp.Gateway
 
             return categories;
         }
+
+        
     }
 }

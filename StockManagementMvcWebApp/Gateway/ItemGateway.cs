@@ -96,10 +96,10 @@ namespace StockManagementMvcWebApp.Gateway
             return rowAffected;
         }
 
-        public List<Item> GetItemsByCompanyCategory(int? companyId, int? categoryId)
+        public List<Item> GetItemsByCompanyCategory1(int? companyId, int? categoryId)
         {
 
-            Query = "SELECT * FROM ItemSetup WHERE CompanyId = @companyId AND CategoryId = @categoryId";
+            Query = "SELECT * FROM ItemSetup WHERE CompanyId = @companyId OR CategoryId = @categoryId";
             Command = new SqlCommand(Query,Connection);
             Command.Parameters.Clear();
             Command.Parameters.AddWithValue("companyId", companyId);
@@ -131,5 +131,43 @@ namespace StockManagementMvcWebApp.Gateway
             }
             return items;
         }
+
+        public List<Item> GetItemsByCompanyCategory2(int? companyId, int? categoryId)
+        {
+
+            Query = "SELECT * FROM ItemSetup WHERE CompanyId = @companyId AND CategoryId = @categoryId";
+            Command = new SqlCommand(Query, Connection);
+            Command.Parameters.Clear();
+            Command.Parameters.AddWithValue("companyId", companyId);
+            Command.Parameters.AddWithValue("categoryId", categoryId);
+
+
+            Connection.Open();
+            Reader = Command.ExecuteReader();
+            List<Item> items = null;
+
+            if (Reader.HasRows)
+            {
+                items = new List<Item>();
+                while (Reader.Read())
+                {
+                    Item anItem = new Item()
+                    {
+                        Id = Convert.ToInt32(Reader["Id"]),
+                        Name = Reader["Name"].ToString(),
+                        CategoryId = Convert.ToInt32(Reader["CategoryId"]),
+                        CompanyId = Convert.ToInt32(Reader["CompanyId"]),
+                        ReorderLevel = Convert.ToInt32(Reader["ReorderLevel"]),
+                        Available = Convert.ToInt32(Reader["Available"])
+
+
+                    };
+                    items.Add(anItem);
+                }
+            }
+            return items;
+        }
+
+       
     }
 }

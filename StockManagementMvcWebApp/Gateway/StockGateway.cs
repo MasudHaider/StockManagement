@@ -74,18 +74,18 @@ namespace StockManagementMvcWebApp.Gateway
             };
         }
 
-        public List<StockSummary> GetStockInformation()
+       /* public List<SalesView> GetStockInformation()
         {
             Query = "SELECT * FROM StockSummary";
             Command = new SqlCommand(Query, Connection);
 
-            List<StockSummary> stockSummaries = new List<StockSummary>();
+            List<SalesView> stockSummaries = new List<SalesView>();
 
             Connection.Open();
             Reader = Command.ExecuteReader();
             while (Reader.Read())
             {
-                stockSummaries.Add(new StockSummary
+                stockSummaries.Add(new SalesView
                 {
                     ItemId = Convert.ToInt32(Reader["Id"]),
                     ItemName = Reader["Name"].ToString(),
@@ -99,7 +99,7 @@ namespace StockManagementMvcWebApp.Gateway
             Connection.Close();
             return stockSummaries;
         }
-
+*/
 
         public int StockOut_SaveAll(List<StockOut> stockOutList)
         {

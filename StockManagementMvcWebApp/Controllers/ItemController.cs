@@ -53,7 +53,7 @@ namespace StockManagementMvcWebApp.Controllers
             return Json(message);
         }
 
-        [HttpGet]
+        /*[HttpGet]*/
         public ActionResult ItemSearchAndView()
         {
             ViewBag.Categories = aCategoryManager.GetAllCategories();
@@ -61,17 +61,18 @@ namespace StockManagementMvcWebApp.Controllers
             return View();
         }
 
+        
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ItemSearchAndView(int? CompanyId, int? CategoryId)
+/*        [HttpPost]
+        [ValidateAntiForgeryToken]*/
+        public JsonResult ItemSearchView(int? CompanyId, int? CategoryId)
         {
 
             List<Item> items = aItemManager.GetItemsByCompanyCategory(CompanyId, CategoryId);
 
             ViewBag.Categories = aCategoryManager.GetAllCategories();
             ViewBag.Companies = aCompanyManager.GetAllCompanies();
-            return View();
+            return Json(items);
         }
 
        

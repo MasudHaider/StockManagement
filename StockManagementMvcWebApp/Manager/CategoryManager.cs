@@ -34,5 +34,7 @@ namespace StockManagementMvcWebApp.Manager
         {
             return aCategoryGateway.GetAllCategories();
         }
+
+        
     }
 }

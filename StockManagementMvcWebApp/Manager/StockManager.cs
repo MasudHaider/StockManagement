@@ -32,11 +32,11 @@ namespace StockManagementMvcWebApp.Manager
         //    }
         //}
 
-        public List<StockSummary> GetStockInformation()
+        /*public List<SalesView> GetStockInformation()
         {
-            List<StockSummary> stockSummaries = aStockGateway.GetStockInformation();
+            List<SalesView> stockSummaries = aStockGateway.GetStockInformation();
             return stockSummaries;
-        }
+        }*/
 
         public string StockOut_SaveAll(List<StockOut> stockOutList)
         {

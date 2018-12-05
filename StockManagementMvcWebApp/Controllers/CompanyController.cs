@@ -49,5 +49,12 @@ namespace StockManagementMvcWebApp.Controllers
             ViewBag.Companies = companies;
             return View();
         }
+
+
+        public JsonResult GetAllCompanies()
+        {
+            List<Company> companies = aCompanyManager.GetAllCompanies();
+            return Json(companies);
+        }
 	}
 }

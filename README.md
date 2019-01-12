@@ -17,3 +17,12 @@ Small shops sometimes face difficulties to manage their stock (In, Out and avail
 | 5| Stock Out|
 | 6| Search & View Items Summary|
 | 7| View Sales Between Two Dates|
+
+
+
+## **Some snapshot of project** :
+![](pic/Screenshot_3.png)
+![](pic/Screenshot_4.png)
+![](pic/Screenshot_6.png)
+![](pic/Screenshot_7.png)
+
